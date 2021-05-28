@@ -1,0 +1,2 @@
+# AppAcademy-Challenge
+Desafio de código da AppAcademy - Premier Soft . O que precisamos que o programa faça ? mostrar a porcentagem de candidatos de Android, iOS e QA mostrar a idade média dos candidatos de QA mostrar o número de estados distintos presentes na lista mostrar o nome do estado e a quantidade de candidatos dos 2 estados com menos ocorrências ordenar por ordem alfabética a lista de candidatos e salvar como Sorted_AppAcademy_Candidates.csv
