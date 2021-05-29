@@ -1,16 +1,27 @@
 package com.premiersoft.appacademy.appacademy.model;
 
-//import javax.persistence.Entity;
-//import javax.persistence.Table;
-//
-//@Entity
-////@Table(name = "candidatos")
+import javax.persistence.*;
+import java.util.Objects;
+
+@Entity
+@Table(name = "candidatos")
 public class Candidato {
 
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
     private String vaga;
+
+    @Column(nullable = false)
     private String idade;
+
+    @Column(nullable = false)
     private String estado;
 
     @Deprecated
@@ -37,6 +48,20 @@ public class Candidato {
 
     public String getEstado() {
         return estado;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Candidato candidato = (Candidato) o;
+        return Objects.equals(nome, candidato.nome) && Objects.equals(vaga, candidato.vaga) && Objects.equals(idade, candidato.idade) && Objects.equals(estado, candidato.estado);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, vaga, idade, estado);
     }
 
     @Override
