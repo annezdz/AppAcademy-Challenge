@@ -35,6 +35,7 @@ public class Candidato {
     }
 
     public Candidato(String frase){
+
         var splitted = frase.split(";");
         this.nome = splitted[0];
         this.vaga = splitted[1];
