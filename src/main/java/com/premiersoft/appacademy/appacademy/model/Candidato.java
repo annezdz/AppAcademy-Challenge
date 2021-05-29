@@ -19,7 +19,7 @@ public class Candidato {
     private String vaga;
 
     @Column(nullable = false)
-    private String idade;
+    private int idade;
 
     @Column(nullable = false)
     private String estado;
@@ -27,22 +27,30 @@ public class Candidato {
     @Deprecated
     public Candidato() { }
 
-    public Candidato(String nome, String vaga, String idade, String estado) {
+    public Candidato(String nome, String vaga, int idade, String estado) {
         this.nome = nome;
         this.vaga = vaga;
         this.idade = idade;
         this.estado = estado;
     }
 
-    public String getNome() {
-        return nome;
+    public Candidato(String frase){
+        var splitted = frase.split(";");
+        this.nome = splitted[0];
+        this.vaga = splitted[1];
+        this.idade = Integer.parseInt(splitted[2].split(" ")[0]);
+        this.estado = splitted[3];
     }
+
+    public int getId(){return id;}
+
+    public String getNome() { return nome; }
 
     public String getVaga() {
         return vaga;
     }
 
-    public String getIdade() {
+    public int getIdade() {
         return idade;
     }
 
@@ -67,9 +75,10 @@ public class Candidato {
     @Override
     public String toString() {
         return "Candidato{" +
-                "nome='" + nome + '\'' +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
                 ", vaga='" + vaga + '\'' +
-                ", idade='" + idade + '\'' +
+                ", idade=" + idade +
                 ", estado='" + estado + '\'' +
                 '}';
     }
