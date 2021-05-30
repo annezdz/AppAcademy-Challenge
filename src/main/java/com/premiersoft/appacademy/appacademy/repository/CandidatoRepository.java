@@ -11,4 +11,5 @@ public interface CandidatoRepository extends JpaRepository<Candidato, Long>{
 
     List<Candidato> findAllByVaga(String vaga);
 
+
 }

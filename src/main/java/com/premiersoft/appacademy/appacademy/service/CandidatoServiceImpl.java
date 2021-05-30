@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class CandidatoServiceImpl  implements CandidatoService{
@@ -54,20 +54,18 @@ public class CandidatoServiceImpl  implements CandidatoService{
     }
 
     public Map<String, Long> estadosComMenosCandidatos(){
-        var estadoList = repository.findAll().stream()
-                .collect(Collectors.groupingBy(Candidato::getEstado, Collectors.counting()));
-        return estadoList;
+        return repository.findAll().stream()
+                .collect(Collectors.groupingBy(Candidato::getEstado, Collectors.counting()))
+                .entrySet().stream().sorted(Map.Entry.comparingByValue())
+                .limit(4)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                        (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+
     }
 
     public List<Candidato> listaOrdenada(){
         return repository.findAll().stream().sorted(Comparator.comparing(Candidato::getNome))
                 .collect(Collectors.toList());
     }
-
-
-
-
-
-
 
 }
