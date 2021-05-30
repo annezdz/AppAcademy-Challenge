@@ -6,11 +6,11 @@ import com.premiersoft.appacademy.appacademy.repository.CandidatoRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.counting;
+import java.util.stream.Stream;
 
 @Service
 public class CandidatoServiceImpl  implements CandidatoService{
@@ -54,16 +54,17 @@ public class CandidatoServiceImpl  implements CandidatoService{
     }
 
     public Map<String, Long> estadosComMenosCandidatos(){
-        var estadoList =repository.findAll().stream()
-                .collect(Collectors.groupingBy(Candidato::getEstado, counting()));
-
+        var estadoList = repository.findAll().stream()
+                .collect(Collectors.groupingBy(Candidato::getEstado, Collectors.counting()));
         return estadoList;
-        
-//        var estadoList = repository.findAll().stream()
-//                .map(Candidato::getEstado)
-//                .collect(Collectors.groupingBy(Candidato::getEstado));
-//
     }
+
+    public List<Candidato> listaOrdenada(){
+        return repository.findAll().stream().sorted(Comparator.comparing(Candidato::getNome))
+                .collect(Collectors.toList());
+    }
+
+
 
 
 

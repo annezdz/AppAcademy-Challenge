@@ -53,5 +53,10 @@ public class CandidatoController {
         return ResponseEntity.ok(service.estadosComMenosCandidatos());
     }
 
+    @GetMapping("/listaordenada")
+    public ResponseEntity<?> listaOrdenada(){
+        return ResponseEntity.ok(service.listaOrdenada());
+    }
+
 
 }
