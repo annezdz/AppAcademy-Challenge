@@ -20,11 +20,21 @@ public class CandidatoServiceImpl  implements CandidatoService{
         this.repository = repository;
     }
 
-
     @Override
     public List<Candidato> saveAll(String file) throws FileNotFoundException {
         var listCandidatos = lerCsvFiles.readCsvLineByLine(file);
         var add = listCandidatos.stream().map(Candidato::new).collect(Collectors.toList());
         return repository.saveAll(add);
     }
+
+    @Override
+    public double getPercentual(String vaga) {
+        int totalCandidatos = repository.findAll().size();
+        int qtd = repository.findAllByVaga(vaga).size();
+        return (Math.round((double)qtd/totalCandidatos * 100));
+    }
+
+
+
+
 }

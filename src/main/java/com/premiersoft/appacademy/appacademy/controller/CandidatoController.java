@@ -23,10 +23,18 @@ public class CandidatoController {
         this.service = service;
     }
 
+//
+//    @GetMapping("api/csv")
+//    public ResponseEntity<?> lerArquivoEPopularBanco(@RequestParam String filename) throws FileNotFoundException {
+//       return ResponseEntity.ok(service.saveAll(filename));
+//    }
 
-    @GetMapping("api/csv")
-    public ResponseEntity<?> lerArquivoEPopularBanco(@RequestParam String filename) throws FileNotFoundException {
-       return ResponseEntity.ok(service.saveAll(filename));
+    @GetMapping("porc")
+    public ResponseEntity<?> getPorcentagem (@RequestParam String vaga){
+//        var qtdAndroid =  ResponseEntity.ok(service.getPercentual("Android"));
+//        var qtdQA = ResponseEntity.ok(service.getPercentual("QA"));
+//        var qtdIos = ResponseEntity.ok(service.getPercentual("iOS"));
+        return ResponseEntity.ok(service.getPercentual(vaga));
     }
 
 
