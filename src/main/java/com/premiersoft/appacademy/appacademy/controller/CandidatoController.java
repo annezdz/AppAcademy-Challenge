@@ -43,5 +43,10 @@ public class CandidatoController {
         return ResponseEntity.ok(service.idadeMediaQA(vaga));
     }
 
+    @GetMapping("/estados")
+    public ResponseEntity<?> getEstados(){
+        return ResponseEntity.ok(service.estadosDistintos());
+    }
+
 
 }
