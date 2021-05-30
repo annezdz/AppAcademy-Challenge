@@ -10,6 +10,6 @@ public interface CandidatoService {
 
     List<Candidato> saveAll(String file) throws FileNotFoundException;
     double getPercentual(String vaga);
-
+    double idadeMediaQA(String vaga);
 
 }

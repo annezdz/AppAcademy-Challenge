@@ -34,6 +34,15 @@ public class CandidatoServiceImpl  implements CandidatoService{
         return (Math.round((double)qtd/totalCandidatos * 100));
     }
 
+    public double idadeMediaQA(String vaga){
+        var ageList = repository.findAllByVaga(vaga).stream()
+                .map(Candidato::getIdade)
+                .collect(Collectors.toList()).stream()
+                .reduce(0, Integer::sum) ;
+
+        return (double) ageList / repository.findAllByVaga(vaga).size();
+    }
+
 
 
 
