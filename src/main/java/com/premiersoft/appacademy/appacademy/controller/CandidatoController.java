@@ -48,5 +48,10 @@ public class CandidatoController {
         return ResponseEntity.ok(service.estadosDistintos());
     }
 
+    @GetMapping("/ultimos")
+    public ResponseEntity<?> estadosComMenosCandidatos(){
+        return ResponseEntity.ok(service.estadosComMenosCandidatos());
+    }
+
 
 }

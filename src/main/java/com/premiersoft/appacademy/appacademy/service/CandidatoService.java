@@ -4,6 +4,7 @@ import com.premiersoft.appacademy.appacademy.model.Candidato;
 
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Map;
 
 public interface CandidatoService {
 
@@ -12,5 +13,6 @@ public interface CandidatoService {
     double getPercentual(String vaga);
     double idadeMediaQA(String vaga);
     int estadosDistintos();
+    Map<String, Long> estadosComMenosCandidatos();
 
 }

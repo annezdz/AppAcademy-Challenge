@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.counting;
 
 @Service
 public class CandidatoServiceImpl  implements CandidatoService{
@@ -45,10 +48,21 @@ public class CandidatoServiceImpl  implements CandidatoService{
     }
 
     public int estadosDistintos(){
-
         return (int) repository.findAll().stream()
                 .map(Candidato::getEstado)
                 .distinct().count();
+    }
+
+    public Map<String, Long> estadosComMenosCandidatos(){
+        var estadoList =repository.findAll().stream()
+                .collect(Collectors.groupingBy(Candidato::getEstado, counting()));
+
+        return estadoList;
+        
+//        var estadoList = repository.findAll().stream()
+//                .map(Candidato::getEstado)
+//                .collect(Collectors.groupingBy(Candidato::getEstado));
+//
     }
 
 
