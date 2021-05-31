@@ -66,8 +66,7 @@ public class CandidatoServiceImpl  implements CandidatoService{
                         (oldValue, newValue) -> oldValue, LinkedHashMap::new));
 
     }
-
-
+    
     public List<Candidato> listaOrdenada(){
         return repository.findAll().stream().sorted(Comparator.comparing(Candidato::getNome))
                 .collect(Collectors.toList());
@@ -78,12 +77,16 @@ public class CandidatoServiceImpl  implements CandidatoService{
         criarCsvFiles.gravarCsv(gravar);
     }
 
-//    public RelatorioDto buildReport(Long id) {
-//        return repository.findById(id)
-//                .map(relatorioResponseDto -> new RelatorioDto(
-//                        id,
-//                        relatorioResponseDto.
-//                ))
-//    }
+    public List<Candidato> filtersByCriteria(){
+        return repository.findAll()
+                .stream()
+                .filter(c -> c.getEstado().equals("SC")
+                        && c.getIdade() >= 21
+                        && c.getIdade() < 31
+                        && c.getIdade() % 2 != 0)
+                .collect(Collectors.toList());
+    }
+
+
 
 }

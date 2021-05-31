@@ -17,4 +17,5 @@ public interface CandidatoService {
     int estadosDistintos();
     Map<String, Long> estadosComMenosCandidatos();
     void gravarCsv() throws IOException;
+    List<Candidato> filtersByCriteria();
 }

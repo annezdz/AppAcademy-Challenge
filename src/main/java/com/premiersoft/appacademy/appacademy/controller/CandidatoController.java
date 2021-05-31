@@ -56,4 +56,9 @@ public class CandidatoController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("instrutores")
+    public ResponseEntity<?> findTeachers(){
+        return ResponseEntity.ok(service.findTeachers());
+    }
+
 }
