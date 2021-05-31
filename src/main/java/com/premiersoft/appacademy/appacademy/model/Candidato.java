@@ -75,12 +75,6 @@ public class Candidato {
 
     @Override
     public String toString() {
-        return "Candidato{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", vaga='" + vaga + '\'' +
-                ", idade=" + idade +
-                ", estado='" + estado + '\'' +
-                '}';
+        return nome + "," + vaga + "," + idade + " anos," + estado;
     }
 }

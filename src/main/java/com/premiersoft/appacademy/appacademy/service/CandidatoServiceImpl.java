@@ -1,11 +1,13 @@
 package com.premiersoft.appacademy.appacademy.service;
 
+import com.premiersoft.appacademy.appacademy.handler.CriarCsvFiles;
 import com.premiersoft.appacademy.appacademy.handler.LerCsvFiles;
 import com.premiersoft.appacademy.appacademy.model.Candidato;
 import com.premiersoft.appacademy.appacademy.repository.CandidatoRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -17,10 +19,12 @@ public class CandidatoServiceImpl  implements CandidatoService{
 
     private final LerCsvFiles lerCsvFiles;
     private final CandidatoRepository repository;
+    private final CriarCsvFiles criarCsvFiles;
 
-    public CandidatoServiceImpl(LerCsvFiles lerCsvFiles, CandidatoRepository repository) {
+    public CandidatoServiceImpl(LerCsvFiles lerCsvFiles, CandidatoRepository repository, CriarCsvFiles criarCsvFiles) {
         this.lerCsvFiles = lerCsvFiles;
         this.repository = repository;
+        this.criarCsvFiles = criarCsvFiles;
     }
 
 
@@ -63,9 +67,23 @@ public class CandidatoServiceImpl  implements CandidatoService{
 
     }
 
+
     public List<Candidato> listaOrdenada(){
         return repository.findAll().stream().sorted(Comparator.comparing(Candidato::getNome))
                 .collect(Collectors.toList());
     }
+
+    public void gravarCsv() throws IOException {
+        var gravar = listaOrdenada();
+        criarCsvFiles.gravarCsv(gravar);
+    }
+
+//    public RelatorioDto buildReport(Long id) {
+//        return repository.findById(id)
+//                .map(relatorioResponseDto -> new RelatorioDto(
+//                        id,
+//                        relatorioResponseDto.
+//                ))
+//    }
 
 }

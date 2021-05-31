@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.FileNotFoundException;
-import java.util.List;
+import java.io.IOException;
+
 
 @RestController
 public class CandidatoController {
@@ -32,9 +32,6 @@ public class CandidatoController {
 
     @GetMapping("/porc")
     public ResponseEntity<?> getPorcentagem (@RequestParam String vaga){
-//        var qtdAndroid =  ResponseEntity.ok(service.getPercentual("Android"));
-//        var qtdQA = ResponseEntity.ok(service.getPercentual("QA"));
-//        var qtdIos = ResponseEntity.ok(service.getPercentual("iOS"));
         return ResponseEntity.ok(service.getPercentual(vaga));
     }
 
@@ -53,10 +50,10 @@ public class CandidatoController {
         return ResponseEntity.ok(service.estadosComMenosCandidatos());
     }
 
-    @GetMapping("/listaordenada")
-    public ResponseEntity<?> listaOrdenada(){
-        return ResponseEntity.ok(service.listaOrdenada());
+    @GetMapping("/gravarcsv")
+    public ResponseEntity<?> listaOrdenada() throws IOException {
+        service.gravarCsv();
+        return ResponseEntity.ok().build();
     }
-
 
 }
