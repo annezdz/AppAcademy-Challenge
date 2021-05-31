@@ -8,9 +8,12 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.*;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class CandidatoServiceImpl  implements CandidatoService{
@@ -25,13 +28,11 @@ public class CandidatoServiceImpl  implements CandidatoService{
         this.criarCsvFiles = criarCsvFiles;
     }
 
-
     public List<Candidato> saveAll(String file) throws FileNotFoundException {
         var listCandidatos = lerCsvFiles.readCsvLineByLine(file);
         var add = listCandidatos.stream().map(Candidato::new).collect(Collectors.toList());
         return repository.saveAll(add);
     }
-
 
     public double getPercentual(String vaga) {
         int totalCandidatos = repository.findAll().size();
@@ -94,9 +95,11 @@ public class CandidatoServiceImpl  implements CandidatoService{
 
     public List<Candidato> findTeacherAndroid(){
 
-        return filtersByCriteria().stream()
-                .filter(item -> item.getNome().split(" ")[1].endsWith("o"))
+        return filtersByCriteria()
+                .stream()
+                .filter(item -> item.getNome().split(" ")[0].endsWith("o"))
+                .filter(a -> Pattern.compile("[aeiouAEIOUôÔÍíãÃáÁÉéÓóãÃÊê]")
+                        .matcher(a.getNome().split(" ")[0]).results().count() == 3)
                 .collect(Collectors.toList());
     }
-
 }

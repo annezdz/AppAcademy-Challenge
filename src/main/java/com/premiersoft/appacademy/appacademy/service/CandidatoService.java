@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 public interface CandidatoService {
 
@@ -19,4 +18,5 @@ public interface CandidatoService {
     void gravarCsv() throws IOException;
     List<Candidato> filtersByCriteria();
     List<Candidato> findTeacheriOS();
+    List<Candidato> findTeacherAndroid();
 }

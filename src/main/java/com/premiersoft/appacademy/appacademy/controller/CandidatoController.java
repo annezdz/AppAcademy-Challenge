@@ -66,5 +66,10 @@ public class CandidatoController {
         return ResponseEntity.ok(service.findTeacheriOS());
     }
 
+    @GetMapping("android")
+    public ResponseEntity<?> findTeacherAndroid(){
+        return ResponseEntity.ok(service.findTeacherAndroid());
+    }
+
 
 }
