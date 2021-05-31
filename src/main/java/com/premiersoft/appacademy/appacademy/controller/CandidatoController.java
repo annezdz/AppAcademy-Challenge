@@ -58,7 +58,13 @@ public class CandidatoController {
 
     @GetMapping("instrutores")
     public ResponseEntity<?> findTeachers(){
-        return ResponseEntity.ok(service.findTeachers());
+        return ResponseEntity.ok(service.filtersByCriteria());
     }
+
+    @GetMapping("ios")
+    public ResponseEntity<?> findTeacheriOS(){
+        return ResponseEntity.ok(service.findTeacheriOS());
+    }
+
 
 }

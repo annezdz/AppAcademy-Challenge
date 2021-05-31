@@ -8,11 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class CandidatoServiceImpl  implements CandidatoService{
@@ -87,6 +85,18 @@ public class CandidatoServiceImpl  implements CandidatoService{
                 .collect(Collectors.toList());
     }
 
+    public List<Candidato> findTeacheriOS(){
 
+        return filtersByCriteria().stream()
+                .filter(item -> item.getNome().split(" ")[1].startsWith("V"))
+                .collect(Collectors.toList());
+    }
+
+    public List<Candidato> findTeacherAndroid(){
+
+        return filtersByCriteria().stream()
+                .filter(item -> item.getNome().split(" ")[1].endsWith("o"))
+                .collect(Collectors.toList());
+    }
 
 }
