@@ -71,5 +71,9 @@ public class CandidatoController {
         return ResponseEntity.ok(service.findTeacherAndroid());
     }
 
+    @GetMapping("/relatorio")
+    public ResponseEntity<?> criarRelatorio() {
+        return ResponseEntity.ok(service.buildRelatorio().toString());
+    }
 
 }

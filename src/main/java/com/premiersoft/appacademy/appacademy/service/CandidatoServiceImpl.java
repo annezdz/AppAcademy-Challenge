@@ -1,5 +1,6 @@
 package com.premiersoft.appacademy.appacademy.service;
 
+import com.premiersoft.appacademy.appacademy.dto.RelatorioDto;
 import com.premiersoft.appacademy.appacademy.handler.CriarCsvFiles;
 import com.premiersoft.appacademy.appacademy.handler.LerCsvFiles;
 import com.premiersoft.appacademy.appacademy.model.Candidato;
@@ -8,10 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -41,13 +39,13 @@ public class CandidatoServiceImpl  implements CandidatoService{
     }
 
 
-    public double idadeMediaQA(String vaga){
+    public int idadeMediaQA(String vaga){
         var ageList = repository.findAllByVaga(vaga).stream()
                 .map(Candidato::getIdade)
                 .collect(Collectors.toList()).stream()
                 .reduce(0, Integer::sum) ;
 
-        return (double) ageList / repository.findAllByVaga(vaga).size();
+        return ageList / repository.findAllByVaga(vaga).size();
     }
 
     public int estadosDistintos(){
@@ -101,5 +99,21 @@ public class CandidatoServiceImpl  implements CandidatoService{
                 .filter(a -> Pattern.compile("[aeiouAEIOUôÔÍíãÃáÁÉéÓóãÃÊê]")
                         .matcher(a.getNome().split(" ")[0]).results().count() == 3)
                 .collect(Collectors.toList());
+    }
+
+    // vagas = Arrays.asList("QA", "Android", "iOS");
+
+    public RelatorioDto buildRelatorio(){
+
+        List<String> vagas = Arrays.asList("QA", "Android", "iOS");
+
+        return new RelatorioDto(
+                idadeMediaQA(vagas.get(0)),
+                estadosDistintos(),
+                vagas.stream().map(this::getPercentual).collect(Collectors.toList()),
+                findTeacheriOS(),
+                findTeacherAndroid(),
+                estadosComMenosCandidatos()
+                );
     }
 }
