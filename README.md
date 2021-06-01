@@ -88,15 +88,15 @@ Com todos os requisitos e a API em execução, pode-se utilizar o Postman para f
 
 #### Endpoints
 
-| Ação                                           	| Endpoint          	| Método 	|
-|------------------------------------------------	|-------------------	|--------	|
-| Gravar Csv no banco                            	| /api/csv          	| Get    	|
-| Retorna percentual por vaga                    	| /porc?vaga={vaga} 	| Get    	|
-| Retorna idade média por vaga                   	| /idade/{vaga}     	| Get    	|
-| Retorna quantidade de estados inscritos        	| /estados          	| Get    	|
-| Retorna os estados com menos inscritos         	| /ultimos          	| Get    	|
-| Gravar um arquivo CSV com candidatos ordenados 	| /gravarcsv        	| Get    	|
-| Retorna o nome do instrutor de iOS             	| /ios              	| Get    	|
-| Retorna o nome do instrutor de Android         	| /android          	| Get    	|
-| Gera um relatório com todos os métodos         	| /relatorio        	| Get    	|
+| Ação                                           	| Endpoint          	  | Método 	|
+|------------------------------------------------	|-----------------------|--------	|
+| Gravar Csv no banco                            	| _/api/csv_          	| Get    	|
+| Retorna percentual por vaga                    	| _/porc?vaga={vaga}_ 	| Get    	|
+| Retorna idade média por vaga                   	| _/idade/{vaga}_     	| Get    	|
+| Retorna quantidade de estados inscritos        	| _/estados_          	| Get    	|
+| Retorna os estados com menos inscritos         	| _/ultimos_          	| Get    	|
+| Gravar um arquivo CSV com candidatos ordenados 	| _/gravarcsv_        	| Get    	|
+| Retorna o nome do instrutor de iOS             	| _/ios_              	| Get    	|
+| Retorna o nome do instrutor de Android         	| _/android_          	| Get    	|
+| Gera um relatório com todos os métodos         	| _/relatorio_        	| Get    	|
 
